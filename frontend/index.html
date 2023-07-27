@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventM - Login & Signup</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/index.css'>
+    
+</head>
+
+<body>
+  
+    <nav>
+        <img src="images/eventm.png" alt="EventM Logo" width="50" height="50">
+ 
+        <p>EventM - Enjoy the Events in your City</p>
+        <div class="switch-btn">
+            <button class="active" onclick="showForm('login-form')">Login</button>
+            <button onclick="showForm('register-form')">Signup</button>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <form id="login-form" class="form-detail" action="#" method="post">
+        <div class="tabcontent" id="sign-in">
+            <h2>Login</h2>
+          
+            <div class="form-row">
+                <label class="form-row-inner">
+                    <input type="email" name="email" id="email2" class="input-text" required>
+                    <span class="label">E-Mail</span>
+                    <span class="border"></span>
+                </label>
+            </div>
+            <div class="form-row">
+                <label class="form-row-inner">
+                    <input type="password" name="password_1" id="password2" class="input-text" required>
+                    <span class="label">Password</span>
+                    <span class="border"></span>
+                </label>
+            </div>
+            <div class="form-row-last">
+                <input type="submit" name="login" class="register" id="login" value="Sign In">
+            </div>
+        </div>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="register-form" class="form-detail" action="#" method="post" style="display:none;">
+        <div class="tabcontent" id="sign-up">
+            <h2>Signup</h2>
+            <div class="form-row">
+                <label class="form-row-inner">
+                    <input type="text" name="firstName" id="fname1" class="input-text" required>
+                    <span class="label">First name</span>
+                    <span class="border"></span>
+                </label>
+            </div>
+            <div class="form-row">
+                <label class="form-row-inner">
+                    <input type="text" name="lastName" id="lname1" class="input-text" required>
+                    <span class="label">Last name</span>
+                    <span class="border"></span>
+                </label>
+            </div>
+            <div class="form-row">
+                <label class="form-row-inner">
+                    <input type="text" name="email" id="email1" class="input-text" required>
+                    <span class="label">E-Mail</span>
+                    <span class="border"></span>
+                </label>
+            </div>
+            <div class="form-row">
+                <label class="form-row-inner">
+                    <input type="text" name="city" id="city1" class="input-text" required>
+                    <span class="label">City</span>
+                    <span class="border"></span>
+                </label>
+            </div>
+            <div class="form-row">
+                <label class="form-row-inner">
+                    <input type="text" name="interests" id="interests1" class="input-text" required>
+                    <span class="label">Interests</span>
+                    <span class="border"></span>
+                </label>
+            </div>
+            <div class="form-row">
+                <label class="form-row-inner">
+                    <input type="password" name="password" id="password1" class="input-text" required>
+                    <span class="label">Password</span>
+                    <span class="border"></span>
+                </label>
+            </div>
+            <div class="form-row-last">
+                <input type="submit" name="register" class="register" value="Register">
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function showForm(formId) {
+            const forms = document.querySelectorAll('.form-detail');
+            const buttons = document.querySelectorAll('.switch-btn button');
+
+            forms.forEach(form => form.style.display = 'none');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            const formToShow = document.getElementById(formId);
+            formToShow.style.display = 'block';
+
+            const activeButton = document.querySelector(`.switch-btn button[data-form="${formId}"]`);
+            activeButton.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
