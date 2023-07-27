@@ -15,12 +15,13 @@ let protect = async (req, res, next) => {
       throw new Error("User unauthorized!");
     }
     const verifiedToken = jwt.verify(token, process.env.SECRET_KEY);
+    // console.log(`VerifiedToken ${verifiedToken}`);
     const user = await User.findOne({ _id: verifiedToken._id });
     if (!user) {
       throw new Error("User unauthorized!");
     }
     req.user = user;
-    next();
+    next(); 
   } catch (error) {
     console.log(error);
     next(new Error("Something went wrong!"));

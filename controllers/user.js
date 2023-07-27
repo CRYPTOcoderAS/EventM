@@ -60,7 +60,7 @@ let addInterest = async (req, res) => {
 
 let getUserDetails = async (req, res) => {
     try {
-        console.log(req.user);
+        // console.log(req.user);  
         const user = await User.findOne({_id: req.user._id});
         res.status(200).json({ User: user, message: "User details retrieved successfully" });
     } catch (error) {
@@ -68,6 +68,17 @@ let getUserDetails = async (req, res) => {
     }
 }
 
+let getAllEvents = async (req, res) => {
+  try{
+    const url = `https://www.eventbriteapi.com/v3/organizations/${process.env.ORGANIZATION_ID}/events/?token=${process.env.API_TOKEN}`;
+    // console.log(process.env.ORGANIZATION_ID + " " + process.env.API_TOKEN);
+    let response = await axios.get(url);
+    res.status(200).json(response.data.events);
+  }catch(e){
+    res.status(400).json({msg: e.message});
+  }
+}
 
 
-module.exports = { addUser, login, deleteUser, addInterest };
+
+module.exports = { addUser, login, deleteUser, addInterest, getUserDetails, getAllEvents };
