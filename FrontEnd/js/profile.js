@@ -4,8 +4,10 @@ const lname = document.getElementById('lname');
 const email = document.getElementById('email');
 const city = document.getElementById('city');
 
-if(!localStorage.getItem("userToken")){
-    window.location.href="http://127.0.0.1:5500/EventM/Frontend/index.html";
+const baseUrl = 'http://localhost:8000/api/user';
+
+if (!localStorage.getItem('userToken')) {
+  window.location.href = 'http://127.0.0.1:5500/Frontend/index.html';
 }
 
 const config = {
@@ -28,7 +30,4 @@ const fetchUser = async () => {
   }
 };
 
-
-
 fetchUser();
-
