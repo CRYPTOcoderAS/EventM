@@ -48,7 +48,7 @@ loginForm.addEventListener('submit',(e)=>{
             "Content-Type":"application/json"
         }
     })
-    .then((res)=>{
+    .then((res)=>{ 
         console.log(res.data.Token);
         localStorage.setItem("userToken",res.data.Token);
         alert("Login successful");
