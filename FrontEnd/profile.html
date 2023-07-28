@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Profile page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/profile.css'>
+    <!-- <script src='main.js'></script> -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js" integrity="sha512-L4lHq2JI/GoKsERT8KYa72iCwfSrKYWEyaBxzJeeITM9Lub5vlTj8tufqYk056exhjo2QDEipJrg6zen/DDtoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div style="width: 100%; height: 60px;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Event Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto mr-3"  id="navbar-items" >
+                
+              </ul>
+            </div>
+          </nav>
+      </div>
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="profile-head">
+                                <h5 id="username">
+                                    
+                                </h5>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>First name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p id="fname">Pravinya</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Last name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p id="lname">Kumbhare</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p id="email">dummy@gmail.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>City</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p id="city">Pune</p>
+                                        </div>
+                                    </div>
+                        </div>
+                        
+                    <div>
+                        <h4>Interests : </h4>
+                        <input type="checkbox" id="interest1" onclick="addInterest('63d61ea5a1d10147d40c9d31','Cooking')" name="interest1" value="Cooking">
+                            <label for="interest1"  onclick="addInterest('63d61ea5a1d10147d40c9d31','Cooking')" id="lab1">Cooking</label><br>
+                            <input type="checkbox"  onclick="addInterest('63d61eaca1d10147d40c9d33','Reading')" id="interest2" name="interest2" value="Reading">
+                            <label for="interest2" onclick="addInterest('63d61eaca1d10147d40c9d33','Reading')" id="lab2"> Reading</label><br>
+                            <input type="checkbox" onclick="addInterest('63d61eb2a1d10147d40c9d35','Coding')" id="interest3" name="interest3" value="Coding">
+                            <label for="interest3" onclick="addInterest('63d61eb2a1d10147d40c9d35','Coding')" id="lab3"> Coding</label><br>
+                            <input type="checkbox" onclick="addInterest('63d61ebca1d10147d40c9d37','Treking')" id="interest4" name="interest4" value="Treking">
+                            <label for="interest4" onclick="addInterest('63d61ebca1d10147d40c9d37','Treking')" id="lab4"> Treking</label><br>
+                    </div>
+                    <hr>
+                    <button id="btn1">Log out</button>
+                    <button id="btn2">Delete user</button>
+                </div>
+            </div>
+        </form>           
+    </div>
+    <script src="./js/profile.js"></script>
+    <script src='./js/nav.js'></script>
+</body>
+</html>

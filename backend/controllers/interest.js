@@ -1,6 +1,6 @@
 const Interest = require("../models/interestModel");
 
-let addInterest = async (req, res) => {
+let addInterest = async (req, res) => {      
   try {
     const { interestName } = req.body;
     if (!interestName || !interestName.trim())
