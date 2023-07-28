@@ -23,7 +23,6 @@ const config = {
 
 const eventsList = document.getElementById('events-list');
 
-<<<<<<< HEAD
 const fetchUser = async () => {
   try {
     const { data } = await axios.get(baseUrl, config);
@@ -38,23 +37,6 @@ const fetchUser = async () => {
       eventsList.innerHTML = eventsHTML;
     } else {
       eventsList.innerHTML = '<li>No events found.</li>';
-=======
-const fetchUser = async () => { 
-    try {
-        const { data } = await axios.get(baseUrl, config);
-        fname.innerText = data.firstName;
-        lname.innerText = data.lastName;
-        email.innerText = data.email;
-        city.innerText = data.city;
-        const interests = data.interests;
-        if (interests.includes("Cooking")) Cooking.checked = true;
-        if (interests.includes("Reading")) Reading.checked = true;
-        if (interests.includes("Coding")) Coding.checked = true;
-        if (interests.includes("Treking")) Treking.checked = true;
-        // console.log(data);
-    } catch (error) {
-        console.log(error);
->>>>>>> 9525539 (took pull from remote)
     }
   } catch (error) {
     console.log(error);
@@ -66,7 +48,7 @@ const fetchUser = async () => {
 
 const logout = () => {
   localStorage.removeItem('userToken');
-  window.location.href = 'http://127.0.0.1:5500/Frontend/index.html';
+  window.location.href = 'http://127.0.0.1:5500/EventM/Frontend/index.html';
 };
 
 const deleteUser = () => {
