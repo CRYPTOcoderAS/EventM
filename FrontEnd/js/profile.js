@@ -23,25 +23,7 @@ const config = {
 
 const eventsList = document.getElementById('events-list');
 
-const fetchUser = async () => {
-  try {
-    const { data } = await axios.get(baseUrl, config);
-    const user = data.User;
-    fname.innerText = user.firstName;
-    lname.innerText = user.lastName;
-    email.innerText = user.email;
-    city.innerText = user.city;
 
-    if (user.events && user.events.length > 0) {
-      const eventsHTML = user.events.map((eventId) => `<li>${eventId}</li>`).join('');
-      eventsList.innerHTML = eventsHTML;
-    } else {
-      eventsList.innerHTML = '<li>No events found.</li>';
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 // ... previous code ...
 
@@ -72,5 +54,43 @@ deleteUserBtn.addEventListener('click', (e) => {
   e.preventDefault();
   deleteUser();
 });
+// profile.js
+// ... previous code ...
+
+const fetchEventName = async (eventId) => {
+    try {
+      const { data } = await axios.get(`${baseUrl}/event/${eventId}`, config);
+      return data.event.name.text;
+    } catch (error) {
+      console.log(error);
+      return "Event Not Found";
+    }
+  };
+  
+  const fetchUser = async () => {
+    try {
+      const { data } = await axios.get(baseUrl, config);
+      const user = data.User;
+      fname.innerText = user.firstName;
+      lname.innerText = user.lastName;
+      email.innerText = user.email;
+      city.innerText = user.city;
+  
+      if (user.events && user.events.length > 0) {
+        const eventsHTML = await Promise.all(user.events.map(async (eventId) => {
+          const eventName = await fetchEventName(eventId);
+          return `<li>${eventId} - ${eventName}</li>`;
+        }));
+        eventsList.innerHTML = eventsHTML.join('');
+      } else {
+        eventsList.innerHTML = '<li>No events found.</li>';
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  // ... previous code ...
+  
 
 fetchUser();
