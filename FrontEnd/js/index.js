@@ -7,7 +7,7 @@ if(localStorage.getItem("userToken")){
     window.location.href="http://127.0.0.1:5500/EventM/Frontend/event.html";
 }
 
-// Register
+
 registerForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     let firstName=document.getElementById('fname1').value;

@@ -29,7 +29,7 @@ app.post('/api/user/send-registration-email', (req, res) => {
 
   const msg = {
     to: userEmail,
-    from: 'akshat0133@gmail.com', // Replace with your verified sender email
+    from: 'akshat0133@gmail.com', 
     subject: 'Registration Confirmation',
     text: 'Thank you for registering for our event! We look forward to seeing you there.',
     html: '<strong>Thank you for registering for our event! We look forward to seeing you there.</strong>',

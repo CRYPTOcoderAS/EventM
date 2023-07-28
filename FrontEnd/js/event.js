@@ -34,7 +34,7 @@ const sendEmailOnRegistration = async (userEmail) => {
     try {
       await axios.put(baseUrl + `/event/${id}`, {}, config);
 
-      // Call the backend endpoint to send the registration confirmation email
+    
       await axios.post(sendurl + '/send-registration-email', { userEmail }, config);
 
       alert("Registration successful");
