@@ -17,15 +17,25 @@ const config = {
     }
 };
 
-const register = async (id) => {
+// const register = async (id) => {
+//     try {
+//         ///event/:id
+//         await axios.put(baseUrl + `/event/${id}`, {}, config);
+//         alert("Registration successful");
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+const register = async (id, userEmail) => {
     try {
-        ///event/:id
-        await axios.put(baseUrl + `/event/${id}`, {}, config);
-        alert("Registration successful");
+      await axios.put(baseUrl + `/event/${id}`, {}, config);
+      sendRegistrationConfirmationEmail(userEmail);
+      alert("Registration successful");
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
+  };
+  
 
 const getAllEvents = async () => {
     console.log(localStorage.getItem('userToken'));
