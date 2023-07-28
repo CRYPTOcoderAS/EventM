@@ -1,4 +1,4 @@
-// profile.js
+
 const fname = document.getElementById('fname');
 const lname = document.getElementById('lname');
 const email = document.getElementById('email');
@@ -19,13 +19,11 @@ const config = {
   },
 };
 
-// ... previous code ...
+
 
 const eventsList = document.getElementById('events-list');
 
 
-
-// ... previous code ...
 
 
 const logout = () => {
@@ -54,8 +52,7 @@ deleteUserBtn.addEventListener('click', (e) => {
   e.preventDefault();
   deleteUser();
 });
-// profile.js
-// ... previous code ...
+
 
 const fetchEventName = async (eventId) => {
     try {
@@ -90,7 +87,7 @@ const fetchEventName = async (eventId) => {
     }
   };
   
-  // ... previous code ...
+
   
 
 fetchUser();

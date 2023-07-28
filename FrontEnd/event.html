@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='./css/event.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/profile.css'>
     <!-- <script src='main.js'></script> -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -25,11 +25,10 @@
         </div>
       </nav>
   </div>
-  <div id="cont" style="display: flex;"></div>
-  <div style="text-align: center;">
+  <div id="cont"></div>
+  <div>
   <label for="userEmailInput">Email:</label>
   <input type="email" id="userEmailInput" placeholder="Enter your email" />
-  <br>
   <button id="all">Get All Events</button>
   <button id="reg">Get Registered Events</button>
   <button id="sug">Get Suggestions</button>
@@ -58,17 +57,16 @@
       try {
         await axios.put(baseUrl + `/event/${id}`, {}, config);
 
-        // Get the userEmail from the input field
+      
         const userEmailInput = document.getElementById('userEmailInput');
         const userEmail = userEmailInput.value;
 
-        // Check if userEmail is empty or not a valid email address
         if (!userEmail || !validateEmail(userEmail)) {
           alert("Please enter a valid email address.");
           return;
         }
 
-        // Call the backend endpoint to register and send the email
+  
         await axios.post(baseUrl + '/send-registration-email', { userEmail, eventId: id }, config);
 
         alert("Registration successful");
@@ -77,7 +75,6 @@
       }
     };
 
-    // Function to validate email address format
     function validateEmail(email) {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailPattern.test(email);
@@ -139,7 +136,7 @@
 
     sug.addEventListener('click', async () => {
       console.log("clicked!");
-      // Implement the getSuggestions function here
+      
     });
 
     reg.addEventListener('click', async () => {
