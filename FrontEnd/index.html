@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Rupeek Social networking platform</title>
+	<title>Event Management</title>
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- Font-->
@@ -11,114 +11,80 @@
     <link rel="stylesheet" href="css/style.css"/>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js" integrity="sha512-L4lHq2JI/GoKsERT8KYa72iCwfSrKYWEyaBxzJeeITM9Lub5vlTj8tufqYk056exhjo2QDEipJrg6zen/DDtoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<style>
+		
+	</style>
+
 </head>
-<body >
-	<div id = "whole" style="width: 100%; height: 60px;">
-		Event Management
+<body>
+	<div id="whole"> EventM - Enjoy the Events in your City
+		<img src="images/logo.png" alt="Event Management Logo" style="display: block; margin: 0 auto; max-width: 90%; max-height: 80%;" />
+    </div>
+	
+
+    <!-- Add the image logo.png below the div with id="whole" -->
+   
+	
 	<div class="form-v8">
-		<div class="page-content">
-			<div class="form-v8-content">
-				<div class="form-left">
-					<img src="images/form-v8.png" height="100px" alt="form">
-				</div>
-				<div class="form-right">
-					<div class="tab">
-						<div class="tab-inner">
-							<button class="tablinks" onclick="openCity(event, 'sign-up')" id="defaultOpen">Sign Up</button>
-						</div>
-						<div class="tab-inner">
-							<button class="tablinks" onclick="openCity(event, 'sign-in')">Sign In</button>
-						</div>
-					</div>
-					<form id="register-form" class="form-detail" action="#" method="post">
-						<div class="tabcontent" id="sign-up">
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="full_name" id="fname1" class="input-text" required>
-									<span class="label">First name</span>
-									  <span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="full_name" id="lname1" class="input-text" required>
-									<span class="label">Last name</span>
-									  <span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="your_email" id="email1" class="input-text" required>
-									<span class="label">E-Mail</span>
-									  <span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="city" id="city" class="input-text" required>
-									<span class="label">City</span>
-									<span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="password" name="password" id="password1" class="input-text" required>
-									<span class="label">Password</span>
-									<span class="border"></span>
-								</label>
-							</div>
-							<!-- <div class="form-row">
-								<label class="form-row-inner">
-									<input type="password" name="comfirm_password" id="comfirm_password" class="input-text" required>
-									<span class="label">Comfirm Password</span>
-									<span class="border"></span>
-								</label>
-							</div> -->
-							<div class="form-row-last">
-								<input type="submit" name="register" class="register" value="Register">
-							</div>
-						</div>
-					</form>
-					<form id="login-form" class="form-detail" action="#" method="post">
-						<div class="tabcontent" id="sign-in">
-							<!-- <div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="full_name_1" id="fname2" class="input-text" required>
-									<span class="label">First name</span>
-									  <span class="border"></span>
-								</label>
-							</div> -->
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="your_email_1" id="email2" class="input-text" required>
-									<span class="label">E-Mail</span>
-									  <span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="password" name="password_1" id="password2" class="input-text" required>
-									<span class="label">Password</span>
-									<span class="border"></span>
-								</label>
-							</div>
-							<!-- <div class="form-row">
-								<label class="form-row-inner">
-									<input type="password" name="comfirm_password_1" id="comfirm_password_1" class="input-text" required>
-									<span class="label">Comfirm Password</span>
-									<span class="border"></span>
-								</label>
-							</div> -->
-							<div class="form-row-last">
-								<input type="submit" name="register" class="register" id="login" value="Sign In">
-							</div>
-						</div>
-					</form>
-				</div>
+		<div class="form-v8-content">
+			<h2>Create an Account or Sign In</h2>
+			<div class="tab">
+				<button class="tablinks" onclick="openCity(event, 'sign-up')" id="defaultOpen">Sign Up</button>
+				<button class="tablinks" onclick="openCity(event, 'sign-in')">Sign In</button>
 			</div>
+			<form id="register-form" class="form-detail" action="#" method="post">
+				<div class="tabcontent" id="sign-up">
+					<div class="form-row">
+						<input type="text" name="full_name" id="fname1" class="input-text" required>
+						<label class="label">First name</label>
+						<span class="border"></span>
+					</div>
+					<div class="form-row">
+						<input type="text" name="full_name" id="lname1" class="input-text" required>
+						<label class="label">Last name</label>
+						<span class="border"></span>
+					</div>
+					<div class="form-row">
+						<input type="text" name="your_email" id="email1" class="input-text" required>
+						<label class="label">E-Mail</label>
+						<span class="border"></span>
+					</div>
+					<div class="form-row">
+						<input type="text" name="city" id="city" class="input-text" required>
+						<label class="label">City</label>
+						<span class="border"></span>
+					</div>
+					<div class="form-row">
+						<input type="password" name="password" id="password1" class="input-text" required>
+						<label class="label">Password</label>
+						<span class="border"></span>
+					</div>
+					<div class="form-row-last">
+						<input type="submit" name="register" class="register" value="Register">
+					</div>
+				</div>
+			</form>
+			<form id="login-form" class="form-detail" action="#" method="post">
+				<div class="tabcontent" id="sign-in">
+					<div class="form-row">
+						<input type="text" name="your_email_1" id="email2" class="input-text" required>
+						<label class="label">E-Mail</label>
+						<span class="border"></span>
+					</div>
+					<div class="form-row">
+						<input type="password" name="password_1" id="password2" class="input-text" required>
+						<label class="label">Password</label>
+						<span class="border"></span>
+					</div>
+					<div class="form-row-last">
+						<input type="submit" name="login" class="register" id="login" value="Sign In">
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-	<script type="text/javascript">
+	<script>
 		function openCity(evt, cityName) {
 		    var i, tabcontent, tablinks;
 		    tabcontent = document.getElementsByClassName("tabcontent");
@@ -136,8 +102,7 @@
 		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-	<script src='./js/nav.js'></script>
 	<script src="./js/index.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>
