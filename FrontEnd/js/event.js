@@ -29,7 +29,7 @@ const config = {
 const register = async (id, userEmail) => {
     try {
       await axios.put(baseUrl + `/event/${id}`, {}, config);
-      sendRegistrationConfirmationEmail(userEmail);
+    
       alert("Registration successful");
     } catch (error) {
       console.log(error);
