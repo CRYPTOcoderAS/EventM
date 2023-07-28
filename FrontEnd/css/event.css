@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +13,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   min-height: 100vh;
-  background: -webkit-linear-gradient(left, #1b1751, #0f6c85);
+  background: #f1f1f1;
 }
 
 body .container {
@@ -26,148 +27,66 @@ body .container {
 
 body .container .card {
   position: relative;
-  min-width: 320px;
-  height: 440px;
-  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-  margin: 30px;
-  transition: 0.5s;
-}
-
-body .container .card:nth-child(1) .box .content a {
-  background: #0f6c85;
-}
-
-body .container .card:nth-child(2) .box .content a {
-  background: #e91e63;
-}
-
-body .container .card:nth-child(3) .box .content a {
-  background: #23c186;
-}
-
-body .container .card .box {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  background: #205596;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
+  margin: 30px;
+  background: #fff;
+  padding: 20px;
+}
+
+body .container .card .profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  background: #ccc; /* Replace this with your actual image URL */
+  /* Add background-image property to set the actual profile image */
+  /* background-image: url('path_to_profile_image.jpg'); */
+  background-size: cover;
+}
+
+body .container .card .name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+body .container .card .headline {
+  font-size: 18px;
+  font-weight: 500;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+body .container .card .bio {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+body .container .card .contact-info {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  transition: 0.5s;
+  flex-wrap: wrap;
 }
 
-body .container .card .box:hover {
-  transform: translateY(-50px);
-}
-
-body .container .card .box:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: 1b1751;
-}
-
-body .container .card .box .content {
-  padding: 20px;
-  text-align: center;
-}
-
-body .container .card .box .content h2 {
-  position: absolute;
-  top: -10px;
-  right: 30px;
-  font-size: 8rem;
-  color: rgba(255, 255, 255, 0.1);
-}
-
-body .container .card .box .content h3 {
-  font-size: 1.8rem;
-  color: #fff;
-  z-index: 1;
-  transition: 0.5s;
-  margin-bottom: 15px;
-}
-
-body .container .card .box .content p {
-  font-size: 1rem;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.9);
-  z-index: 1;
-  transition: 0.5s;
-}
-
-body .container .card .box .content button {
-  position: relative;
-  display: inline-block;
-  padding: 8px 20px;
-  background: black;
-  border-radius: 5px;
-  /* text-decoration: none; */
-  color: white;
-  margin-top: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  transition: 0.5s;
-}
-body .container .card .box .content button:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
-  background: #fff;
-  color: #000;
-  cursor: pointer;
-}
-#navbar {
-  overflow: hidden;
-  background-color: rgb(128, 128, 128);
-}
-
-/* Navbar links */
-#navbar button {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-  background-color: rgb(29, 29, 29);
-  margin: 2px;
-}
-#navbar button:hover{
-    cursor: pointer;
-    color: rgb(97, 95, 95);
-}
-
-/* Page content */
-.content {
-  padding: 16px;
-}
-
-/* The sticky class is added to the navbar with JS when it reaches its scroll position */
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
-.sticky + .content {
-  padding-top: 60px;
-}
-#top{
-    /* border: 5px solid; */
-    display: flex;
-    justify-content: center;
-}
-
-#event-body{
+body .container .card .contact-info .contact-item {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  color: #555;
+  font-size: 16px;
+  margin: 10px;
+}
+
+body .container .card .contact-info .contact-item i {
+  margin-right: 8px;
 }
