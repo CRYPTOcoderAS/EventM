@@ -8,7 +8,7 @@ const mids = require('../middlewares/protect')
 router.post('/', userController.addUser)
 router.post('/login', userController.login)
 router.delete('/', mids.protect, userController.deleteUser)
-router.put('/interest/:id', mids.protect, userController.addInterest)
+router.put('/:id/interest/', mids.protect, userController.addInterest)
 router.get('/', mids.protect, userController.getUserDetails)
  
 // events handlers 
