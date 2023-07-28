@@ -15,7 +15,7 @@ const deletUserBtn=document.getElementById('btn2');
 let baseUrl = 'http://localhost:8000/api/user';
 
 if(!localStorage.getItem("userToken")){
-    window.location.href="http://127.0.0.1:5500/Frontend/index.html";
+    window.location.href="http://127.0.0.1:5500/EventM/Frontend/index.html";
 }
 
 const config = {
