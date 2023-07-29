@@ -23,9 +23,9 @@ const userSchema = mongoose.Schema(
             type: String,
             required: true
         },
-        interests: {
+        interests: [{
             type: String,
-        },
+        }],
         events: [
             {
                 type: String

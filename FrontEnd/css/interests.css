@@ -1,0 +1,69 @@
+/* interest.css */
+
+/* Container styles for the interests section */
+.interests-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the select boxes */
+.form-row {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label {
+    font-weight: bold;
+}
+
+/* Styling for the multi-select dropdowns */
+.input-text {
+    width: 45%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: orange;
+    color: #fff;
+}
+
+.input-text option {
+    padding: 5px;
+}
+
+/* Additional styles for selected interests */
+.selected-interests-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.selected-interest {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Arial, sans-serif; /* Change to your desired font */
+    font-size: 14px;
+}
+
+/* Styling for the interests heading */
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Additional styles to improve appearance */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f1f1f1;
+}
