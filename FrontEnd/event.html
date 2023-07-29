@@ -25,6 +25,13 @@
         </div>
       </nav>
   </div>
+  <div style="text-align: center;">
+    <!-- Add input field for venue_id -->
+    <label for="venueIdInput" style="font-weight: 900;">Venue ID:</label>
+    <input type="text" style="width: 150px;" id="venueIdInput" placeholder="Enter Venue ID" />
+    <!-- Add filter button -->
+    <button id="filter">Filter Events</button>
+  </div>
   <div id="cont" ></div>
   <div style="text-align: center;">
   <label for="userEmailInput" style="font-weight: 900;">Email:</label>
@@ -129,6 +136,65 @@
       }
     };
 
+//new
+
+const filterEventsByVenue = async (venueId) => {
+  try {
+    const { data } = await axios.get(baseUrl + `/events`, config);
+    const filteredEvents = data.filter((event) => event.venue_id === venueId);
+
+    let html = "";
+    filteredEvents.forEach((e) => {
+      let eventname = e.name.text;
+      eventname = eventname[0].toUpperCase() + eventname.slice(1);
+      let date = new Date(e.start.utc).toString().slice(0, 15);
+      html += `<div class="card">
+                <div class="box">
+                  <div class="content">
+                    <h3>${eventname}</h3>
+                    <p><i class="fa-regular fa-calendar"></i> ${date}</p>
+                    <button onclick="register(${e.id})">Register</button>
+                  </div>
+                </div>
+              </div>`;
+    });
+
+    if (filteredEvents.length === 0) {
+      html = "<p>No events found for the specified venue ID.</p>";
+    }
+
+    container.innerHTML = html;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// ... (existing code)
+
+filter.addEventListener('click', async () => {
+  const venueIdInput = document.getElementById('venueIdInput');
+  const venueId = venueIdInput.value.trim();
+  
+  if (!venueId) {
+    alert("Please enter a venue ID to filter events.");
+    return;
+  }
+
+  await filterEventsByVenue(venueId);
+});
+// ... (existing code)
+
+filter.addEventListener('click', async () => {
+  const venueIdInput = document.getElementById('venueIdInput');
+  const venueId = venueIdInput.value;
+  
+  if (!venueId) {
+    alert("Please enter a venue ID to filter events.");
+    return;
+  }
+
+  await filterEventsByVenue(venueId);
+});
     getAllEvents();
 
     all.addEventListener('click', () => {
@@ -144,6 +210,7 @@
       console.log("clicked!");
       await getRegistered();
     });
+
   </script>
     <script src='./js/nav.js'></script>
 </body>
