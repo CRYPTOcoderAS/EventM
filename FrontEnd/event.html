@@ -26,10 +26,10 @@
       </nav>
   </div>
   <div style="text-align: center;">
-    <!-- Add input field for venue_id -->
+   
     <label for="venueIdInput" style="font-weight: 900;">Venue ID:</label>
     <input type="text" style="width: 150px;" id="venueIdInput" placeholder="Enter Venue ID" />
-    <!-- Add filter button -->
+   
     <button id="filter">Filter Events</button>
   </div>
   <div id="cont" ></div>
@@ -169,7 +169,7 @@ const filterEventsByVenue = async (venueId) => {
   }
 };
 
-// ... (existing code)
+
 
 filter.addEventListener('click', async () => {
   const venueIdInput = document.getElementById('venueIdInput');
@@ -182,7 +182,7 @@ filter.addEventListener('click', async () => {
 
   await filterEventsByVenue(venueId);
 });
-// ... (existing code)
+
 
 filter.addEventListener('click', async () => {
   const venueIdInput = document.getElementById('venueIdInput');
