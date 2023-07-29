@@ -5,42 +5,71 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Event Management - Signup</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/style.css'>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Sign Up</h2>
-        <form id="signup-form">
-            <div class="form-row">
-                <input type="text" name="firstName" class="input-text" required>
-                <label class="label">First Name</label>
+    <div id="whole"> EventM - Enjoy the Events in your City
+        <img src="images/logo.png" alt="Event Management Logo" style="display: block; margin: 0 auto; max-width: 90%; max-height: 80%;" />
+    </div>
+
+    <div class="form-v8">
+        <div class="form-v8-content">
+            <h2>Create an Account or Sign In</h2>
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'sign-up')" id="defaultOpen">Sign Up</button>
+                <button class="tablinks" onclick="openCity(event, 'sign-in')">Sign In</button>
             </div>
-            <div class="form-row">
-                <input type="text" name="lastName" class="input-text" required>
-                <label class="label">Last Name</label>
-            </div>
-            <div class="form-row">
-                <input type="text" name="email" class="input-text" required>
-                <label class="label">Email</label>
-            </div>
-            <div class="form-row">
-                <input type="text" name="city" class="input-text" required>
-                <label class="label">City</label>
-            </div>
-            <div class="form-row">
-                <input type="password" name="password" class="input-text" required>
-                <label class="label">Password</label>
-            </div>
-            <div class="form-row">
-                <label class="label">Interests</label>
-                <select name="interests" class="input-text" multiple required>
-                    <!-- Interests will be populated here -->
-                </select>
-            </div>
-            <div class="form-row">
-                <input type="submit" value="Sign Up">
-            </div>
-        </form>
+            <form id="register-form" class="form-detail" action="#" method="post">
+                <div class="tabcontent" id="sign-up">
+                    <div class="form-row">
+                        <input type="text" name="firstName" class="input-text" required>
+                        <label class="label">First Name</label>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="lastName" class="input-text" required>
+                        <label class="label">Last Name</label>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="email" class="input-text" required>
+                        <label class="label">Email</label>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="city" class="input-text" required>
+                        <label class="label">City</label>
+                    </div>
+                    <div class="form-row">
+                        <input type="password" name="password" class="input-text" required>
+                        <label class="label">Password</label>
+                    </div>
+                    <div class="form-row">
+                        <label class="label">Interests</label>
+                        <select name="interests" class="input-text" multiple required>
+                            <!-- Interests will be populated here -->
+                        </select>
+                    </div>
+                    <div class="form-row-last">
+                        <input type="submit" name="register" class="register" value="Register">
+                    </div>
+                </div>
+            </form>
+            <form id="login-form" class="form-detail" action="#" method="post">
+                <div class="tabcontent" id="sign-in">
+                    <div class="form-row">
+                        <input type="text" name="your_email_1" id="email2" class="input-text" required>
+                        <label class="label">E-Mail</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="form-row">
+                        <input type="password" name="password_1" id="password2" class="input-text" required>
+                        <label class="label">Password</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="form-row-last">
+                        <input type="submit" name="login" class="register" id="login" value="Sign In">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -62,8 +91,8 @@
                 console.error(error);
             });
 
-        // Handle form submission
-        document.getElementById('signup-form').addEventListener('submit', function (event) {
+        // Handle form submission for Sign Up
+        document.getElementById('register-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
@@ -87,6 +116,31 @@
                     // Handle the response, e.g., show a success message or redirect to the dashboard
                     console.log('User registered successfully!');
                     // Redirect to dashboard.html
+                    window.location.href = 'event.html';
+                })
+                .catch(error => {
+                    // Handle the error, e.g., display an error message
+                    console.error(error);
+                });
+        });
+
+        // Handle form submission for Sign In
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Create the payload object
+            const payload = {
+                email: formData.get('your_email_1'),
+                password: formData.get('password_1')
+            };
+
+            axios.post('http://localhost:8000/api/login', payload)
+                .then(response => {
+                    // Handle the response, e.g., show a success message or redirect to the dashboard
+                    console.log('User logged in successfully!');
+                    // Redirect to dashboard.html
                     window.location.href = 'dashboard.html';
                 })
                 .catch(error => {
@@ -95,5 +149,23 @@
                 });
         });
     </script>
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        document.getElementById("defaultOpen").click();
+    </script>
+    <script src="./js/index.js"></script>
 </body>
 </html>
