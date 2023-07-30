@@ -1,51 +1,221 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Events</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='./css/event.css'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/profile.css'>
+    <!-- <script src='main.js'></script> -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js" integrity="sha512-L4lHq2JI/GoKsERT8KYa72iCwfSrKYWEyaBxzJeeITM9Lub5vlTj8tufqYk056exhjo2QDEipJrg6zen/DDtoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <title>Event Registration</title>
 </head>
 <body>
   <div style="width: 100%; height: 60px;">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Event Management</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+      
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto me-3 mb-2 mb-lg-0" id="navbar-items">
-            <!-- <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li> -->
+          <ul class="navbar-nav ml-auto mr-3"  id="navbar-items" >
+            
           </ul>
-          <!-- <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form> -->
         </div>
-      </div>
-    </nav>
+      </nav>
   </div>
-  <div class="event-body">
-    <div id="top">
-      <div id="navbar">
-        <button id="all">All</button>
-        <button id="reg">Registered</button>
-        <button id="sug">Suggested</button>
-      </div>
-    </div>
-      <div>
-        <div class="container" id="cont">
-      </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  <script src='./js/nav.js'></script>
-    <script src='./js/event.js'></script>
+  <div style="text-align: center;">
+   
+    <label for="venueIdInput" style="font-weight: 900;">Venue ID:</label>
+    <input type="text" style="width: 150px;" id="venueIdInput" placeholder="Enter Venue ID" />
+   
+    <button id="filter">Filter Events</button>
+  </div style="text-align: center;">
+  <div id="cont" style="text-align: center;
+  width: 500px;
+  align-items: center;
+  margin-left: 35%;
+  gap: 10px;" ></div>
+  <div style="text-align: center;">
+  <label for="userEmailInput" style="font-weight: 900;">Email:</label>
+  <input type="email" style="width: 350px;" id="userEmailInput" placeholder="Enter your email to send Registration email." />
+  <br>
+  <button id="all">Get All Events</button>
+  <button id="reg">Get Registered Events</button>
+  <!-- <button id="sug">Get Suggestions</button> -->
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    let container = document.getElementById('cont');
+    let all = document.getElementById('all');
+    let reg = document.getElementById('reg');
+    let sug = document.getElementById('sug');
+
+    let baseUrl = 'http://localhost:8000/api/user';
+
+    if (!localStorage.getItem("userToken")) {
+      window.location.href = "http://127.0.0.1:5500/EventM/Frontend/index.html";
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("userToken")}`
+      }
+    };
+
+    const register = async (id) => {
+      try {
+        await axios.put(baseUrl + `/event/${id}`, {}, config);
+
+      
+        const userEmailInput = document.getElementById('userEmailInput');
+        const userEmail = userEmailInput.value;
+
+        if (!userEmail || !validateEmail(userEmail)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+  
+        await axios.post(baseUrl + '/send-registration-email', { userEmail, eventId: id }, config);
+
+        alert("Registration successful");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    function validateEmail(email) {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(email);
+    }
+
+    const getAllEvents = async () => {
+      await axios.get(baseUrl + '/events', config)
+        .then(({ data }) => {
+          let html = "";
+          data.forEach((e) => {
+            let eventname = e.name.text;
+            eventname = eventname[0].toUpperCase() + eventname.slice(1);
+            let date = new Date(e.start.utc).toString().slice(0, 15);
+            html += `<div class="card">
+                      <div class="box">
+                        <div class="content">
+                          <h3>${eventname}</h3>
+                          <p><i class="fa-regular fa-calendar"></i> ${date}</p>
+                          <button onclick="register(${e.id})">Register</button>
+                        </div>
+                      </div>
+                    </div>`;
+          });
+          container.innerHTML = html;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    const getRegistered = async () => {
+      try {
+        const { data } = await axios.get(baseUrl + '/events/registered', config);
+        let html = "";
+        data.forEach((e) => {
+          let eventname = e.name.text;
+          eventname[0] = eventname[0].toUpperCase();
+          let date = new Date(e.start.utc).toString().slice(0, 15);
+          html += `<div class="card">
+                    <div class="box">
+                      <div class="content">
+                        <h3>${eventname}</h3>
+                        <p><i class="fa-regular fa-calendar"></i> ${date}</p>
+                      </div>
+                    </div>
+                  </div>`;
+        });
+        container.innerHTML = html;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+//new
+
+const filterEventsByVenue = async (venueId) => {
+  try {
+    const { data } = await axios.get(baseUrl + `/events`, config);
+    const filteredEvents = data.filter((event) => event.venue_id === venueId);
+
+    let html = "";
+    filteredEvents.forEach((e) => {
+      let eventname = e.name.text;
+      eventname = eventname[0].toUpperCase() + eventname.slice(1);
+      let date = new Date(e.start.utc).toString().slice(0, 15);
+      html += `<div class="card">
+                <div class="box">
+                  <div class="content">
+                    <h3>${eventname}</h3>
+                    <p><i class="fa-regular fa-calendar"></i> ${date}</p>
+                    <button onclick="register(${e.id})">Register</button>
+                  </div>
+                </div>
+              </div>`;
+    });
+
+    if (filteredEvents.length === 0) {
+      html = "<p>No events found for the specified venue ID.</p>";
+    }
+
+    container.innerHTML = html;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
+filter.addEventListener('click', async () => {
+  const venueIdInput = document.getElementById('venueIdInput');
+  const venueId = venueIdInput.value.trim();
+  
+  if (!venueId) {
+    alert("Please enter a venue ID to filter events.");
+    return;
+  }
+
+  await filterEventsByVenue(venueId);
+});
+
+
+filter.addEventListener('click', async () => {
+  const venueIdInput = document.getElementById('venueIdInput');
+  const venueId = venueIdInput.value;
+  
+  if (!venueId) {
+    alert("Please enter a venue ID to filter events.");
+    return;
+  }
+
+  await filterEventsByVenue(venueId);
+});
+    getAllEvents();
+
+    all.addEventListener('click', () => {
+      getAllEvents();
+    });
+
+    sug.addEventListener('click', async () => {
+      console.log("clicked!");
+      
+    });
+
+    reg.addEventListener('click', async () => {
+      console.log("clicked!");
+      await getRegistered();
+    });
+
+  </script>
+    <script src='./js/nav.js'></script>
 </body>
 </html>

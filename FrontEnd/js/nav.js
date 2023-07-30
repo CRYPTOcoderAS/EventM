@@ -7,6 +7,9 @@ const setItems=()=>{
         <a class="nav-link" href="event.html">Events</a>
       </li>
       <li class="nav-item mx-3" id="navbar-items">
+      <a class="nav-link" href="users.html">Users</a>
+    </li>
+      <li class="nav-item mx-3" id="navbar-items">
         <a class="nav-link" href="profile.html">Profile</a>
       </li>`;
     }
