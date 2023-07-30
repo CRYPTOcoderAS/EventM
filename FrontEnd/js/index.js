@@ -36,7 +36,7 @@ registerForm.addEventListener('submit',(e)=>{
     document.getElementById('city').value=""
     document.getElementById('password1').value=""
 })
-// Modify the 'register-form' submission to include selected interests
+
 document.getElementById('register-form').addEventListener('submit', function (event) {
     event.preventDefault();
     const form = event.target;
@@ -45,8 +45,7 @@ document.getElementById('register-form').addEventListener('submit', function (ev
     const selectedInterests = Array.from(interestsSelect.selectedOptions).map(option => option.value);
     formData.append('interests', selectedInterests.join(',')); // Assuming interests are stored as a comma-separated string in the database
   
-    // Now you can submit the form data to the server using Axios or other methods
-    // Example: sendFormDataToServer(formData);
+  
   });
   
 

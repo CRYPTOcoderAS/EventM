@@ -74,7 +74,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        // Fetch interests and populate the dropdown
+    
         axios.get('http://localhost:8000/api/interest')
             .then(response => {
                 const interestsSelect = document.querySelector('select[name="interests"]');
@@ -82,8 +82,8 @@
 
                 interests.forEach(interest => {
                     const option = document.createElement('option');
-                    option.value = interest.interestName; // Get only the interest name
-                    option.textContent = interest.interestName; // Display only the interest name
+                    option.value = interest.interestName; 
+                    option.textContent = interest.interestName; 
                     interestsSelect.appendChild(option);
                 });
             })
@@ -91,17 +91,16 @@
                 console.error(error);
             });
 
-        // Handle form submission for Sign Up
+        
         document.getElementById('register-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
 
-            // Get all selected interest options
+           
             const selectedOptions = form.elements['interests'].selectedOptions;
             const selectedInterests = Array.from(selectedOptions).map(option => option.value);
 
-            // Create the payload object
             const payload = {
                 firstName: formData.get('firstName'),
                 lastName: formData.get('lastName'),
@@ -113,24 +112,23 @@
 
             axios.post('http://localhost:8000/api/user', payload)
                 .then(response => {
-                    // Handle the response, e.g., show a success message or redirect to the dashboard
+                 
                     console.log('User registered successfully!');
-                    // Redirect to dashboard.html
+                
                     window.location.href = 'event.html';
                 })
                 .catch(error => {
-                    // Handle the error, e.g., display an error message
+               
                     console.error(error);
                 });
         });
 
-        // Handle form submission for Sign In
+        
         document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
 
-            // Create the payload object
             const payload = {
                 email: formData.get('your_email_1'),
                 password: formData.get('password_1')
@@ -138,13 +136,13 @@
 
             axios.post('http://localhost:8000/api/login', payload)
                 .then(response => {
-                    // Handle the response, e.g., show a success message or redirect to the dashboard
+                  
                     console.log('User logged in successfully!');
-                    // Redirect to dashboard.html
+              
                     window.location.href = 'dashboard.html';
                 })
                 .catch(error => {
-                    // Handle the error, e.g., display an error message
+                
                     console.error(error);
                 });
         });
