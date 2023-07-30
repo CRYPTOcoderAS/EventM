@@ -23,13 +23,11 @@ let login = async (req, res) => {
       const isMatch = await bcrypt.compare(req.body.password, user.password);
       if (isMatch) {
         const token = util.generateToken(user._id);
-        res
-          .status(200)
-          .json({
-            User: user,
-            message: "User logged in successfully",
-            Token: token,
-          });
+        res.status(200).json({
+          User: user,
+          message: "User logged in successfully",
+          Token: token,
+        });
       } else {
         res.status(401).json({ message: "Invalid credentials" });
       }
@@ -108,7 +106,7 @@ let registerForEvents = async (req, res) => {
     res.status(400).json({ msg: e.message });
   }
 };
- 
+
 let fetchRegisteredEvents = async (req, res) => {
   try {
     let response = await axios.get(
@@ -124,6 +122,16 @@ let fetchRegisteredEvents = async (req, res) => {
   }
 };
 
+let getAllUsers = async (req, res) => {
+  try {
+    let users = await User.find();
+    console.log(users);
+    res.status(200).json({message: "All users fetched successfully", users});
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).json({msg: "Can't fetch All users"});
+  }
+};
 
 module.exports = {
   addUser,
@@ -132,6 +140,7 @@ module.exports = {
   addInterest,
   getUserDetails,
   getAllEvents,
+  getAllUsers,
   registerForEvents,
   fetchRegisteredEvents,
 };

@@ -10,7 +10,9 @@ router.post('/login', userController.login)
 router.delete('/', mids.protect, userController.deleteUser)
 router.put('/:id/interest/', mids.protect, userController.addInterest)
 router.get('/', mids.protect, userController.getUserDetails)
- 
+router.get('/all', mids.protect, userController.getAllUsers);
+
+
 // events handlers 
 router.get('/events', mids.protect, userController.getAllEvents)
 // router.get('/events/suggestions', mids.protect, userController.suggestEvents)
