@@ -1,143 +1,171 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Rupeek Social networking platform</title>
-	<!-- Mobile Specific Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<!-- Font-->
-	<link rel="stylesheet" type="text/css" href="css/sourcesanspro-font.css">
-	<!-- Main Style Css -->
-    <link rel="stylesheet" href="css/style.css"/>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js" integrity="sha512-L4lHq2JI/GoKsERT8KYa72iCwfSrKYWEyaBxzJeeITM9Lub5vlTj8tufqYk056exhjo2QDEipJrg6zen/DDtoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Event Management - Signup</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/style.css'>
 </head>
-<body >
-	<div id = "whole" style="width: 100%; height: 60px;">
-		Event Management
-	<div class="form-v8">
-		<div class="page-content">
-			<div class="form-v8-content">
-				<div class="form-left">
-					<img src="images/form-v8.png" height="100px" alt="form">
-				</div>
-				<div class="form-right">
-					<div class="tab">
-						<div class="tab-inner">
-							<button class="tablinks" onclick="openCity(event, 'sign-up')" id="defaultOpen">Sign Up</button>
-						</div>
-						<div class="tab-inner">
-							<button class="tablinks" onclick="openCity(event, 'sign-in')">Sign In</button>
-						</div>
-					</div>
-					<form id="register-form" class="form-detail" action="#" method="post">
-						<div class="tabcontent" id="sign-up">
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="full_name" id="fname1" class="input-text" required>
-									<span class="label">First name</span>
-									  <span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="full_name" id="lname1" class="input-text" required>
-									<span class="label">Last name</span>
-									  <span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="your_email" id="email1" class="input-text" required>
-									<span class="label">E-Mail</span>
-									  <span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="city" id="city" class="input-text" required>
-									<span class="label">City</span>
-									<span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="password" name="password" id="password1" class="input-text" required>
-									<span class="label">Password</span>
-									<span class="border"></span>
-								</label>
-							</div>
-							<!-- <div class="form-row">
-								<label class="form-row-inner">
-									<input type="password" name="comfirm_password" id="comfirm_password" class="input-text" required>
-									<span class="label">Comfirm Password</span>
-									<span class="border"></span>
-								</label>
-							</div> -->
-							<div class="form-row-last">
-								<input type="submit" name="register" class="register" value="Register">
-							</div>
-						</div>
-					</form>
-					<form id="login-form" class="form-detail" action="#" method="post">
-						<div class="tabcontent" id="sign-in">
-							<!-- <div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="full_name_1" id="fname2" class="input-text" required>
-									<span class="label">First name</span>
-									  <span class="border"></span>
-								</label>
-							</div> -->
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="text" name="your_email_1" id="email2" class="input-text" required>
-									<span class="label">E-Mail</span>
-									  <span class="border"></span>
-								</label>
-							</div>
-							<div class="form-row">
-								<label class="form-row-inner">
-									<input type="password" name="password_1" id="password2" class="input-text" required>
-									<span class="label">Password</span>
-									<span class="border"></span>
-								</label>
-							</div>
-							<!-- <div class="form-row">
-								<label class="form-row-inner">
-									<input type="password" name="comfirm_password_1" id="comfirm_password_1" class="input-text" required>
-									<span class="label">Comfirm Password</span>
-									<span class="border"></span>
-								</label>
-							</div> -->
-							<div class="form-row-last">
-								<input type="submit" name="register" class="register" id="login" value="Sign In">
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-		function openCity(evt, cityName) {
-		    var i, tabcontent, tablinks;
-		    tabcontent = document.getElementsByClassName("tabcontent");
-		    for (i = 0; i < tabcontent.length; i++) {
-		        tabcontent[i].style.display = "none";
-		    }
-		    tablinks = document.getElementsByClassName("tablinks");
-		    for (i = 0; i < tablinks.length; i++) {
-		        tablinks[i].className = tablinks[i].className.replace(" active", "");
-		    }
-		    document.getElementById(cityName).style.display = "block";
-		    evt.currentTarget.className += " active";
-		}
+<body>
+    <div id="whole"> EventM - Enjoy the Events in your City
+        <img src="images/logo.png" alt="Event Management Logo" style="display: block; margin: 0 auto; max-width: 90%; max-height: 80%;" />
+    </div>
 
-		// Get the element with id="defaultOpen" and click on it
-		document.getElementById("defaultOpen").click();
-	</script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-	<script src='./js/nav.js'></script>
-	<script src="./js/index.js"></script>
+    <div class="form-v8">
+        <div class="form-v8-content">
+            <h2>Create an Account or Sign In</h2>
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'sign-up')" id="defaultOpen">Sign Up</button>
+                <button class="tablinks" onclick="openCity(event, 'sign-in')">Sign In</button>
+            </div>
+            <form id="register-form" class="form-detail" action="#" method="post">
+                <div class="tabcontent" id="sign-up">
+                    <div class="form-row">
+                        <input type="text" name="firstName" class="input-text" required>
+                        <label class="label">First Name</label>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="lastName" class="input-text" required>
+                        <label class="label">Last Name</label>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="email" class="input-text" required>
+                        <label class="label">Email</label>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="city" class="input-text" required>
+                        <label class="label">City</label>
+                    </div>
+                    <div class="form-row">
+                        <input type="password" name="password" class="input-text" required>
+                        <label class="label">Password</label>
+                    </div>
+                    <div class="form-row">
+                        <label class="label">Interests</label>
+                        <select name="interests" class="input-text" multiple required>
+                            <!-- Interests will be populated here -->
+                        </select>
+                    </div>
+                    <div class="form-row-last">
+                        <input type="submit" name="register" class="register" value="Register">
+                    </div>
+                </div>
+            </form>
+            <form id="login-form" class="form-detail" action="#" method="post">
+                <div class="tabcontent" id="sign-in">
+                    <div class="form-row">
+                        <input type="text" name="your_email_1" id="email2" class="input-text" required>
+                        <label class="label">E-Mail</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="form-row">
+                        <input type="password" name="password_1" id="password2" class="input-text" required>
+                        <label class="label">Password</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="form-row-last">
+                        <input type="submit" name="login" class="register" id="login" value="Sign In">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Fetch interests and populate the dropdown
+        axios.get('http://localhost:8000/api/interest')
+            .then(response => {
+                const interestsSelect = document.querySelector('select[name="interests"]');
+                const interests = response.data;
+
+                interests.forEach(interest => {
+                    const option = document.createElement('option');
+                    option.value = interest.interestName; // Get only the interest name
+                    option.textContent = interest.interestName; // Display only the interest name
+                    interestsSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        // Handle form submission for Sign Up
+        document.getElementById('register-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Get all selected interest options
+            const selectedOptions = form.elements['interests'].selectedOptions;
+            const selectedInterests = Array.from(selectedOptions).map(option => option.value);
+
+            // Create the payload object
+            const payload = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                city: formData.get('city'),
+                password: formData.get('password'),
+                interests: selectedInterests
+            };
+
+            axios.post('http://localhost:8000/api/user', payload)
+                .then(response => {
+                    // Handle the response, e.g., show a success message or redirect to the dashboard
+                    console.log('User registered successfully!');
+                    // Redirect to dashboard.html
+                    window.location.href = 'event.html';
+                })
+                .catch(error => {
+                    // Handle the error, e.g., display an error message
+                    console.error(error);
+                });
+        });
+
+        // Handle form submission for Sign In
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Create the payload object
+            const payload = {
+                email: formData.get('your_email_1'),
+                password: formData.get('password_1')
+            };
+
+            axios.post('http://localhost:8000/api/login', payload)
+                .then(response => {
+                    // Handle the response, e.g., show a success message or redirect to the dashboard
+                    console.log('User logged in successfully!');
+                    // Redirect to dashboard.html
+                    window.location.href = 'dashboard.html';
+                })
+                .catch(error => {
+                    // Handle the error, e.g., display an error message
+                    console.error(error);
+                });
+        });
+    </script>
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        document.getElementById("defaultOpen").click();
+    </script>
+    <script src="./js/index.js"></script>
 </body>
 </html>

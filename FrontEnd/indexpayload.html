@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Event Management - Signup</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <div class="form-row">
+                <input type="text" name="firstName" class="input-text" required>
+                <label class="label">First Name</label>
+            </div>
+            <div class="form-row">
+                <input type="text" name="lastName" class="input-text" required>
+                <label class="label">Last Name</label>
+            </div>
+            <div class="form-row">
+                <input type="text" name="email" class="input-text" required>
+                <label class="label">Email</label>
+            </div>
+            <div class="form-row">
+                <input type="text" name="city" class="input-text" required>
+                <label class="label">City</label>
+            </div>
+            <div class="form-row">
+                <input type="password" name="password" class="input-text" required>
+                <label class="label">Password</label>
+            </div>
+            <div class="form-row">
+                <label class="label">Interests</label>
+                <select name="interests" class="input-text" multiple required>
+                    <!-- Interests will be populated here -->
+                </select>
+            </div>
+            <div class="form-row">
+                <input type="submit" value="Sign Up">
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Fetch interests and populate the dropdown
+        axios.get('http://localhost:8000/api/interest')
+            .then(response => {
+                const interestsSelect = document.querySelector('select[name="interests"]');
+                const interests = response.data;
+
+                interests.forEach(interest => {
+                    const option = document.createElement('option');
+                    option.value = interest.interestName; // Get only the interest name
+                    option.textContent = interest.interestName; // Display only the interest name
+                    interestsSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        // Handle form submission
+        document.getElementById('signup-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Get all selected interest options
+            const selectedOptions = form.elements['interests'].selectedOptions;
+            const selectedInterests = Array.from(selectedOptions).map(option => option.value);
+
+            // Create the payload object
+            const payload = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                city: formData.get('city'),
+                password: formData.get('password'),
+                interests: selectedInterests
+            };
+
+            axios.post('http://localhost:8000/api/signup', payload)
+                .then(response => {
+                    // Handle the response, e.g., show a success message or redirect to the dashboard
+                    console.log('User registered successfully!');
+                    // Redirect to dashboard.html
+                    window.location.href = 'dashboard.html';
+                })
+                .catch(error => {
+                    // Handle the error, e.g., display an error message
+                    console.error(error);
+                });
+        });
+    </script>
+</body>
+</html>

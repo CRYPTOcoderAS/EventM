@@ -1,22 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  min-height: 100vh;
-  background: #f1f1f1;
+  background: -webkit-linear-gradient(left, #fba71b, #ffffff); /* Orange to white gradient */
 }
 
-body .container {
+.emp-profile {
+  padding: 3%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,68 +19,129 @@ body .container {
   margin: 40px 0;
 }
 
-body .container .card {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  height: auto;
+.card {
+  width: calc(33.33% - 40px); /* Set the width of each card in the gallery */
+  margin: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-  margin: 30px;
   background: #fff;
   padding: 20px;
 }
 
-body .container .card .profile-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  background: #ccc; /* Replace this with your actual image URL */
-  /* Add background-image property to set the actual profile image */
-  /* background-image: url('path_to_profile_image.jpg'); */
-  background-size: cover;
-}
-
-body .container .card .name {
-  font-size: 24px;
-  font-weight: 700;
-  color: #333;
+.profile-img {
   text-align: center;
-  margin-bottom: 10px;
 }
 
-body .container .card .headline {
-  font-size: 18px;
-  font-weight: 500;
-  color: #666;
-  text-align: center;
-  margin-bottom: 20px;
+.profile-img img {
+  width: 70%;
+  height: 100%;
 }
 
-body .container .card .bio {
-  font-size: 16px;
-  color: #444;
-  line-height: 1.6;
-  text-align: center;
-  margin-bottom: 30px;
+.profile-img .file {
+  position: relative;
+  overflow: hidden;
+  margin-top: -20%;
+  width: 70%;
+  border: none;
+  border-radius: 0;
+  font-size: 15px;
+  background: #212529b8;
 }
 
-body .container .card .contact-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+.profile-img .file input {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  top: 0;
 }
 
-body .container .card .contact-info .contact-item {
-  display: flex;
-  align-items: center;
-  color: #555;
-  font-size: 16px;
-  margin: 10px;
+.profile-head h5 {
+  color: #fff; /* White text color */
 }
 
-body .container .card .contact-info .contact-item i {
-  margin-right: 8px;
+.profile-head h6 {
+  color: #fba71b; /* Orange text color */
+}
+
+.profile-edit-btn {
+  border: none;
+  border-radius: 1.5rem;
+  width: 70%;
+  padding: 2%;
+  font-weight: 600;
+  color: #fff; /* White text color */
+  cursor: pointer;
+  background-color: #fba71b; /* Orange background color */
+}
+
+.proile-rating {
+  font-size: 12px;
+  color: #818182;
+  margin-top: 5%;
+}
+
+.proile-rating span {
+  color: #495057;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.profile-head .nav-tabs {
+  margin-bottom: 5%;
+}
+
+.profile-head .nav-tabs .nav-link {
+  font-weight: 600;
+  border: none;
+}
+
+.profile-head .nav-tabs .nav-link.active {
+  border: none;
+  border-bottom: 2px solid #fba71b; /* Orange border color */
+}
+
+.profile-work {
+  padding: 14%;
+  margin-top: -15%;
+}
+
+.profile-work p {
+  font-size: 12px;
+  color: #818182;
+  font-weight: 600;
+  margin-top: 10%;
+}
+
+.profile-work a {
+  text-decoration: none;
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.profile-work ul {
+  list-style: none;
+}
+
+.profile-tab label {
+  font-weight: 600;
+}
+
+.profile-tab p {
+  font-weight: 600;
+  color: #fba71b; /* Orange text color */
+}
+
+#btn1 {
+  border-radius: 5px;
+  background-color: #fba71b; /* Orange background color */
+}
+
+#btn2 {
+  border-radius: 5px;
+  background-color: #fba71b; /* Orange background color */
+}
+
+#interest {
+  background-color: #fba71b; /* Orange background color */
 }

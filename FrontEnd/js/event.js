@@ -4,7 +4,7 @@ let reg = document.getElementById('reg');
 let sug = document.getElementById('sug');
 
 let baseUrl = 'http://localhost:8000/api/user';
-
+let sendurl= 'http://localhost:8000/api/user';
 if(!localStorage.getItem("userToken")){
     window.location.href="http://127.0.0.1:5500/EventM/Frontend/index.html";
 }
@@ -17,25 +17,32 @@ const config = {
     }
 };
 
-// const register = async (id) => {
-//     try {
-//         ///event/:id
-//         await axios.put(baseUrl + `/event/${id}`, {}, config);
-//         alert("Registration successful");
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-const register = async (id, userEmail) => {
+
+const sendEmailOnRegistration = async (userEmail) => {
+    const emailData = { userEmail };
+  
+    try {
+      await axios.post('http://localhost:8000/api/user/send-registration-email', emailData, config);
+      console.log('Email sent on registration');
+    } catch (error) {
+      console.log('Error sending email on registration:', error);
+    }
+  };
+  
+  
+  const register = async (id, userEmail) => {
     try {
       await axios.put(baseUrl + `/event/${id}`, {}, config);
-      sendRegistrationConfirmationEmail(userEmail);
+
+    
+      await axios.post(sendurl + '/send-registration-email', { userEmail }, config);
+
       alert("Registration successful");
     } catch (error) {
       console.log(error);
     }
-  };
-  
+};
+
 
 const getAllEvents = async () => {
     console.log(localStorage.getItem('userToken'));

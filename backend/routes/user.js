@@ -4,7 +4,7 @@ const userController = require('../controllers/user')
 const mids = require('../middlewares/protect')
 
 
-// user handlers
+
 router.post('/', userController.addUser)
 router.post('/login', userController.login)
 router.delete('/', mids.protect, userController.deleteUser)

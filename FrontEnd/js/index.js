@@ -7,7 +7,7 @@ if(localStorage.getItem("userToken")){
     window.location.href="http://127.0.0.1:5500/EventM/Frontend/event.html";
 }
 
-// Register
+
 registerForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     let firstName=document.getElementById('fname1').value;
@@ -36,6 +36,19 @@ registerForm.addEventListener('submit',(e)=>{
     document.getElementById('city').value=""
     document.getElementById('password1').value=""
 })
+// Modify the 'register-form' submission to include selected interests
+document.getElementById('register-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const interestsSelect = document.getElementById('interests');
+    const selectedInterests = Array.from(interestsSelect.selectedOptions).map(option => option.value);
+    formData.append('interests', selectedInterests.join(',')); // Assuming interests are stored as a comma-separated string in the database
+  
+    // Now you can submit the form data to the server using Axios or other methods
+    // Example: sendFormDataToServer(formData);
+  });
+  
 
 // Login
 loginForm.addEventListener('submit',(e)=>{
