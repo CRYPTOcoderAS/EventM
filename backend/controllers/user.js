@@ -123,6 +123,18 @@ let fetchRegisteredEvents = async (req, res) => {
 };
 
 
+let getAllUsers = async (req, res) => {
+  try {
+    let users = await User.find();
+   // console.log(users);
+    res.status(200).json({message: "All users fetched successfully", users});
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).json({msg: "Can't fetch All users"});
+  }
+};
+
+
 module.exports = {
   addUser,
   login,
