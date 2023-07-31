@@ -43,6 +43,10 @@
   <br>
   <button id="all">Get All Events</button>
   <button id="reg">Get Registered Events</button>
+  <button id="getRegisteredBtn" onclick="getRegistered()">Get Registered Events</button>
+
+  <div id="registered-events-container"></div>
+
   <!-- <button id="sug">Get Suggestions</button> -->
 </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -132,29 +136,31 @@ const register = async (id) => {
           console.log(err);
         });
     };
+    //const container = document.getElementById('registered-events-container');
 
-    const getRegistered = async () => {
-      try {
-        const { data } = await axios.get(baseUrl + '/events/registered', config);
-        let html = "";
-        data.forEach((e) => {
-          let eventname = e.name.text;
-          eventname[0] = eventname[0].toUpperCase();
-          let date = new Date(e.start.utc).toString().slice(0, 15);
-          html += `<div class="card">
-                    <div class="box">
-                      <div class="content">
-                        <h3>${eventname}</h3>
-                        <p><i class="fa-regular fa-calendar"></i> ${date}</p>
-                      </div>
-                    </div>
-                  </div>`;
-        });
-        container.innerHTML = html;
-      } catch (error) {
-        console.log(error);
-      }
-    };
+const getRegistered = async () => {
+  try {
+    const { data } = await axios.get(baseUrl + '/events/registered', config);
+    let html = "";
+    data.forEach((e) => {
+      let eventname = e.name.text;
+      eventname = eventname.charAt(0).toUpperCase() + eventname.slice(1);
+      let date = new Date(e.start.utc).toString().slice(0, 15);
+      html += `<div class="card">
+                <div class="box">
+                  <div class="content">
+                    <h3>${eventname}</h3>
+                    <p><i class="fa-regular fa-calendar"></i> ${date}</p>
+                  </div>
+                </div>
+              </div>`;
+    });
+    container.innerHTML = html;
+  } catch (error) {
+    console.log(error);
+  }
+};
+  
 
 //new
 
