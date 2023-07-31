@@ -13,9 +13,8 @@ router.get('/', mids.protect, userController.getUserDetails)
 router.get('/all', mids.protect, userController.getAllUsers);
 
 
-// events handlers 
+// events handlers  
 router.get('/events', mids.protect, userController.getAllEvents)
-// router.get('/events/suggestions', mids.protect, userController.suggestEvents)
 router.put('/event/:id', mids.protect, userController.registerForEvents)
 router.get('/events/registered', mids.protect, userController.fetchRegisteredEvents)
 

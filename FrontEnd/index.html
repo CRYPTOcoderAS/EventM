@@ -101,6 +101,7 @@
             const selectedOptions = form.elements['interests'].selectedOptions;
             const selectedInterests = Array.from(selectedOptions).map(option => option.value);
 
+            
             const payload = {
                 firstName: formData.get('firstName'),
                 lastName: formData.get('lastName'),
