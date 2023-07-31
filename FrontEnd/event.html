@@ -64,7 +64,7 @@
         "Authorization": `Bearer ${localStorage.getItem("userToken")}`
       }
     };
-
+    
     const register = async (id) => {
       try {
         await axios.put(baseUrl + `/event/${id}`, {}, config);
