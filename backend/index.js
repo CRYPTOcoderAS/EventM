@@ -10,14 +10,11 @@ const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
 
 app.use(cors());
-
 app.use(express.json());
 app.use(morgan());
 app.use(express.urlencoded({ extended: true }));
 
-
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
 
 app.post('/api/user/send-registration-email', async (req, res) => {
   try {
@@ -43,20 +40,24 @@ app.post('/api/user/send-registration-email', async (req, res) => {
   }
 });
 
-
-
 const port = process.env.PORT || 8000;
 
 app.use('/api/user', userRoute);
 app.use('/api/interest', interestRoute);
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
+async function connectToDatabase() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log('Connected to MongoDB');
     app.listen(port, () => {
       console.log(`Example app listening on port ${port}!`);
     });
-  })
-  .catch((err) => {
+  } catch (err) {
     console.error('Error connecting to MongoDB:', err);
-  });
+  }
+}
+
+connectToDatabase();
