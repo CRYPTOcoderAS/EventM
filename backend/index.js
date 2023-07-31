@@ -9,15 +9,13 @@ const sgMail = require('@sendgrid/mail');
 
 require('dotenv').config();
 
-// Enable CORS for all routes
 app.use(cors());
 
-// Use middleware
 app.use(express.json());
 app.use(morgan());
 app.use(express.urlencoded({ extended: true }));
 
-// Set SendGrid API key
+
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 

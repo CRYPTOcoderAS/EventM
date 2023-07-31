@@ -19,4 +19,6 @@ router.get('/events', mids.protect, userController.getAllEvents)
 router.put('/event/:id', mids.protect, userController.registerForEvents)
 router.get('/events/registered', mids.protect, userController.fetchRegisteredEvents)
 
+
+
 module.exports = router
