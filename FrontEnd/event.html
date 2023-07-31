@@ -64,28 +64,44 @@
         "Authorization": `Bearer ${localStorage.getItem("userToken")}`
       }
     };
-    
-    const register = async (id) => {
-      try {
-        await axios.put(baseUrl + `/event/${id}`, {}, config);
 
-      
-        const userEmailInput = document.getElementById('userEmailInput');
-        const userEmail = userEmailInput.value;
 
-        if (!userEmail || !validateEmail(userEmail)) {
-          alert("Please enter a valid email address.");
-          return;
-        }
-
-  
-        await axios.post(baseUrl + '/send-registration-email', { userEmail, eventId: id }, config);
-
-        alert("Registration successful");
-      } catch (error) {
-        console.log(error);
+const register = async (id) => {
+  try {
+   
+    const eventResponse = await axios.get(`https://www.eventbriteapi.com/v3/events/${id}/`, {
+      headers: {
+        'Authorization': 'Bearer KCIV4OKXGX3FO6FDGVYC'
       }
-    };
+    });
+
+    const eventName = eventResponse.data?.name?.text;
+    if (!eventName) {
+      console.error('Event name not found in the API response.');
+      return;
+    }
+
+   
+    await axios.put(baseUrl + `/event/${id}`, { eventName }, config);
+
+    const userEmailInput = document.getElementById('userEmailInput');
+    const userEmail = userEmailInput.value;
+    if (!userEmail || !validateEmail(userEmail)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+
+    await axios.post(baseUrl + '/send-registration-email', { userEmail, eventName, eventId: id }, config);
+
+    alert("Registration successful");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
 
     function validateEmail(email) {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -95,7 +95,6 @@ let registerForEvents = async (req, res) => {
     let eventId = req.params.id;
     let { eventName } = req.body;
     let newEvent = {eventId, eventName};
-    console.log(req.body, newEvent);
     await User.findOneAndUpdate(
       { _id: req.user._id },
       {
