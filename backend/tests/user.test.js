@@ -3,6 +3,7 @@ const { getOrganizations } = require("../controllers/eventbritecontroller");
 
 jest.mock("axios");
 
+
 describe("Eventbrite API", () => {
   it("should fetch organizations from Eventbrite API", async () => {
    
