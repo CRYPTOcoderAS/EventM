@@ -1,26 +1,30 @@
 const axios = require("axios");
 
-
-async function getOrganizations(apiToken) {
+let getOrganizations = async (token) => {
   try {
     const url = "https://www.eventbriteapi.com/v3/users/me/organizations/";
-
-    const response = await axios.get(url, {
+    let response = await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${apiToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
-
-
     return response.data;
-  } catch (error) {
-    console.error("Error fetching organizations from Eventbrite API:", error);
-    throw new Error("Failed to fetch organizations from Eventbrite API");
+  } catch (e) {
+    throw new Error("Error fetching organizations from Eventbrite API");
   }
-}
+};
 
-
+let getEventById = async (eventId) => {
+  try {
+    const url = `https://www.eventbriteapi.com/v3/events/${eventId}/?token=${process.env.API_TOKEN}`;
+    let response = await axios.get(url);
+    return response.data;
+  } catch (e) {
+    throw new Error("Error fetching event from Eventbrite API");
+  }
+};
 
 module.exports = {
   getOrganizations,
+  getEventById,
 };
