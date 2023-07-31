@@ -92,13 +92,15 @@ let getAllEvents = async (req, res) => {
 
 let registerForEvents = async (req, res) => {
   try {
-    let params = req.params;
+    let eventId = req.params.id;
+    let { eventName } = req.body;
+    let newEvent = {eventId, eventName};
     await User.findOneAndUpdate(
       { _id: req.user._id },
       {
-        $addToSet: {
-          events: params.id,
-        },
+        $push: {
+          events: newEvent
+        }  
       }
     );
     res.status(200).json({ msg: "Event registered successfully" });

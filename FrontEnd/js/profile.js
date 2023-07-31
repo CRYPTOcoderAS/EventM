@@ -8,7 +8,7 @@ const deleteUserBtn = document.getElementById('btn2');
 const eventsList = document.getElementById('events-list');
 
 const baseUrl = 'http://localhost:8000/api/user';
-const eventbriteUrl='https://www.eventbriteapi.com/v3';
+const eventbriteUrl = 'https://www.eventbriteapi.com/v3';
 
 if (!localStorage.getItem('userToken')) {
   window.location.href = 'http://127.0.0.1:5500/Frontend/index.html';
@@ -73,9 +73,9 @@ const fetchUser = async () => {
     // Update events list
     eventsList.innerHTML = '';
     if (user.events && user.events.length > 0) {
-      const eventsHTML = await Promise.all(user.events.map(async (eventId) => {
-        const eventName = await fetchEventName(eventId);
-        return `<li>${eventId} - ${eventName}</li>`;
+      const eventsHTML = await Promise.all(user.events.map(async (event) => {
+        const eventName = await fetchEventName(event.eventId);
+        return `<li>${event.eventId} - ${eventName}</li>`;
       }));
       eventsList.innerHTML = eventsHTML.join('');
     } else {
@@ -99,4 +99,5 @@ const fetchUser = async () => {
   }
 };
 
+// Call the fetchUser function to populate the profile page
 fetchUser();

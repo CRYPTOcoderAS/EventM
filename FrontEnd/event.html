@@ -65,27 +65,49 @@
       }
     };
 
-    const register = async (id) => {
-      try {
-        await axios.put(baseUrl + `/event/${id}`, {}, config);
+ //   const axios = require('axios');
 
-      
-        const userEmailInput = document.getElementById('userEmailInput');
-        const userEmail = userEmailInput.value;
-
-        if (!userEmail || !validateEmail(userEmail)) {
-          alert("Please enter a valid email address.");
-          return;
-        }
-
-  
-        await axios.post(baseUrl + '/send-registration-email', { userEmail, eventId: id }, config);
-
-        alert("Registration successful");
-      } catch (error) {
-        console.log(error);
+const register = async (id) => {
+  try {
+    // Fetch the event details using the Eventbrite API
+    const eventResponse = await axios.get(`https://www.eventbriteapi.com/v3/events/${id}/`, {
+      headers: {
+        'Authorization': 'Bearer KCIV4OKXGX3FO6FDGVYC'
       }
-    };
+    });
+
+    // Verify the structure of the API response and access the event name accordingly
+    const eventName = eventResponse.data?.name?.text;
+    if (!eventName) {
+      console.error('Event name not found in the API response.');
+      return;
+    }
+
+    // Perform the PUT request with the eventName
+    await axios.put(baseUrl + `/event/${id}`, { eventName }, config);
+
+    // Get user email from the input field and validate it
+    const userEmailInput = document.getElementById('userEmailInput');
+    const userEmail = userEmailInput.value;
+    if (!userEmail || !validateEmail(userEmail)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // Perform the POST request to send the registration email
+    await axios.post(baseUrl + '/send-registration-email', { userEmail, eventName, eventId: id }, config);
+
+    alert("Registration successful");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Validate email function (you should have this function defined)
+function validateEmail(email) {
+  // Implement your email validation logic here
+  // Return true if the email is valid, false otherwise
+}
 
     function validateEmail(email) {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
