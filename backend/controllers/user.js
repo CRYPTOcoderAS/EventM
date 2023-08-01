@@ -118,6 +118,8 @@ let fetchRegisteredEvents = async (req, res) => {
     let events = response.data.events.filter((e) =>
       req.user.events.includes(e.id)
     );
+    console.log(req.user.events);
+    // events wali list empty hai
     res.status(200).send(events);
   } catch (error) {
     console.log(error);
