@@ -168,36 +168,44 @@
       }
     };
 
-const getRegistered = async () => {
-  try {
-    const { data } = await axios.get(baseUrl + '/events/registered', config);
-    let html = "";
-    data.forEach((e) => {
-      let eventname = e.name.text;
-      eventname = eventname.charAt(0).toUpperCase() + eventname.slice(1);
-      let date = new Date(e.start.utc).toString().slice(0, 15);
-      html += `<div class="card">
-                <div class="box">
-                  <div class="content">
-                    <h3>${eventname}</h3>
-                    <p><i class="fa-regular fa-calendar"></i> ${date}</p>
-                  </div>
-                </div>
-              </div>`;
-    });
-    container.innerHTML = html;
-  } catch (error) {
-    console.log(error);
-  }
-};
-  
+    const getRegistered = async () => {
+      try {
+        isShowingAllEvents = false;
+        const { data } = await axios.get(baseUrl + '/events/registered', config);
+        let html = "";
+        data.forEach((event) => {
+          const eventId = event.eventId;
+          const eventName = event.eventName;
+          html += `<div class="registered-event">
+                    <p>Event ID: ${eventId}</p>
+                    <p>Event Name: ${eventName}</p>
+                  </div>`;
+        });
+        const registeredEventsContainer = document.getElementById('registered-events-container');
+        registeredEventsContainer.innerHTML = html;
+        container.style.display = 'none';
+        registeredEventsContainer.style.display = 'flex';
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-//new
+    const filterEventsByVenue = async () => {
+      try {
+        if (isShowingAllEvents) {
+          return;
+        }
 
-const filterEventsByVenue = async (venueId) => {
-  try {
-    const { data } = await axios.get(baseUrl + `/events`, config);
-    const filteredEvents = data.filter((event) => event.venue_id === venueId);
+        const venueIdInput = document.getElementById('venueIdInput');
+        const venueId = venueIdInput.value;
+
+        if (!venueId) {
+          alert("Please enter a valid Venue ID.");
+          return;
+        }
+
+        const { data } = await axios.get(baseUrl + `/events`, config);
+        const filteredEvents = data.filter((event) => event.venue_id === venueId);
 
         let html = "";
         filteredEvents.forEach((e) => {
