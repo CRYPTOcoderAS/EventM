@@ -127,7 +127,7 @@ let fetchRegisteredEvents = async (req, res) => {
       689572539027
       689566400667
     */
-    console.log(registerEvents);
+    // console.log(registerEvents);
     // events wali list empty hai
     res.status(200).json(registerEvents); 
   } catch (error) {
