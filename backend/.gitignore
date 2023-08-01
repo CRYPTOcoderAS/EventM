@@ -131,4 +131,7 @@ node_modules/
 
 .environment
 .env
-*.env/
+*.env
+*.env.example
+*.env.local
+*.env.staging
