@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
       pass: "Password@akshat0133",
     },
   });
-  
+   
 
 
   const sendRegistrationConfirmationEmail = (recipientEmail, eventName, registrantName) => {

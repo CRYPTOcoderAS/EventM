@@ -141,6 +141,7 @@ const register = async (id) => {
 const getRegistered = async () => {
   try {
     const { data } = await axios.get(baseUrl + '/events/registered', config);
+    console.log(data);
     let html = "";
     data.forEach((e) => {
       let eventname = e.name.text;
