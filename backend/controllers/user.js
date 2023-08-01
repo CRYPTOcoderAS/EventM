@@ -116,7 +116,7 @@ let fetchRegisteredEvents = async (req, res) => {
       `https://www.eventbriteapi.com/v3/organizations/${process.env.ORGANIZATION_ID}/events/?token=${process.env.API_TOKEN}`
     );
     let registerEvents = req.user.events.filter((event) => {
-      return response.data.events.some((e) => e.id === event.eventId);
+      return response.data.events.filter((e) => e.id === event.eventId);
     });
     /* 
       response.data.events wali id's [this contains all the events]
