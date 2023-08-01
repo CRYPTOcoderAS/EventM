@@ -92,13 +92,15 @@ let getAllEvents = async (req, res) => {
 
 let registerForEvents = async (req, res) => {
   try {
-    let params = req.params;
+    let eventId = req.params.id;
+    let { eventName } = req.body;
+    let newEvent = {eventId, eventName};
     await User.findOneAndUpdate(
       { _id: req.user._id },
       {
-        $addToSet: {
-          events: params.id,
-        },
+        $push: {
+          events: newEvent
+        }  
       }
     );
     res.status(200).json({ msg: "Event registered successfully" });
@@ -112,10 +114,13 @@ let fetchRegisteredEvents = async (req, res) => {
     let response = await axios.get(
       `https://www.eventbriteapi.com/v3/organizations/${process.env.ORGANIZATION_ID}/events/?token=${process.env.API_TOKEN}`
     );
-    let events = response.data.events.filter((e) =>
-      req.user.events.includes(e.id)
-    );
-    res.status(200).send(events);
+    let registerEvents = req.user.events.filter((event) => {
+      return response.data.events.filter((e) => e.id === event.eventId);
+    });
+    
+  
+  
+    res.status(200).json(registerEvents); 
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });

@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Users</title>
+  <title>User List</title>
   <link rel="stylesheet" href="./css/users.css">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js" integrity="sha512-L4lHq2JI/GoKsERT8KYa72iCwfSrKYWEyaBxzJeeITM9Lub5vlTj8tufqYk056exhjo2QDEipJrg6zen/DDtoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-
 <body>
-    <div style="width: 100%; height: 60px;">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Event Management</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto mr-3"  id="navbar-items" >
-                
-              </ul>
-            </div>
-          </nav>
+  <div style="width: 100%; height: 60px;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">EventM - Enjoy the Events in your City</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mr-3"  id="navbar-items" >
+        </ul>
       </div>
+    </nav>
+  </div>
   <div class="container">
     <h1>All Users</h1>
     <table>
@@ -40,13 +36,63 @@
         </tr>
       </thead>
       <tbody id="userTableBody">
-
       </tbody>
     </table>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userTableBody = document.getElementById("userTableBody");
 
-  <script src="./js/users.js"></script>
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGM2NjU4Nzg5YzVlNDU4NTg3NzdmMWUiLCJpYXQiOjE2OTA4Mjc5NzgsImV4cCI6MTY5MDkxNDM3OH0.huVw337szgxXkvtRKOeMbHxbtf-QG-AGMU6tdOit0lY";
+
+      axios.get("http://localhost:8000/api/user/all", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const data = response.data;
+        if (data.users && data.users.length > 0) {
+          data.users.forEach((user) => {
+            const row = document.createElement("tr");
+            const nameCell = document.createElement("td");
+            nameCell.textContent = user.firstName + " " + user.lastName;
+            row.appendChild(nameCell);
+            const emailCell = document.createElement("td");
+            emailCell.textContent = user.email;
+            row.appendChild(emailCell);
+            const cityCell = document.createElement("td");
+            cityCell.textContent = user.city;
+            row.appendChild(cityCell);
+            const interestsCell = document.createElement("td");
+            interestsCell.textContent = user.interests.join(", ");
+            row.appendChild(interestsCell);
+            const eventsCell = document.createElement("td");
+            const eventNames = user.events.map((event) => event.eventName);
+            eventsCell.textContent = eventNames.join(", ");
+            row.appendChild(eventsCell);
+            userTableBody.appendChild(row);
+          });
+        } else {
+          const row = document.createElement("tr");
+          const messageCell = document.createElement("td");
+          messageCell.colSpan = 5;
+          messageCell.textContent = "No users found";
+          row.appendChild(messageCell);
+          userTableBody.appendChild(row);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+        const row = document.createElement("tr");
+        const messageCell = document.createElement("td");
+        messageCell.colSpan = 5;
+        messageCell.textContent = "Error fetching users";
+        row.appendChild(messageCell);
+        userTableBody.appendChild(row);
+      });
+    });
+  </script>
   <script src="./js/nav.js"></script>
 </body>
-
 </html>

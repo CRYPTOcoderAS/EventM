@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const userTableBody = document.getElementById("userTableBody");
   
     
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGM2NjU4Nzg5YzVlNDU4NTg3NzdmMWUiLCJpYXQiOjE2OTA3MzgxMTksImV4cCI6MTY5MDgyNDUxOX0.IfBnFvEq9u0g1c5ko8b5hKGA22j4XDCxsTZiqvJG410";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGM2NjU4Nzg5YzVlNDU4NTg3NzdmMWUiLCJpYXQiOjE2OTA4Mjc5NzgsImV4cCI6MTY5MDkxNDM3OH0.huVw337szgxXkvtRKOeMbHxbtf-QG-AGMU6tdOit0lY";
     
    
     fetch("http://localhost:8000/api/user/all", {
