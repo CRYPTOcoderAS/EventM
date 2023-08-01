@@ -47,11 +47,11 @@ document
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    const interestsSelect = document.getElementById("interests");
-    const selectedInterests = Array.from(interestsSelect.selectedOptions).map(
-      (option) => option.value
-    );
-    formData.append("interests", selectedInterests.join(",")); // Assuming interests are stored as a comma-separated string in the database
+    const interestsSelect = document.getElementById('interests');
+    const selectedInterests = Array.from(interestsSelect.selectedOptions).map(option => option.value);
+    formData.append('interests', selectedInterests.join(',')); 
+  
+  
   });
 
 // Login
