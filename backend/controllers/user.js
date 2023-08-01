@@ -115,12 +115,21 @@ let fetchRegisteredEvents = async (req, res) => {
     let response = await axios.get(
       `https://www.eventbriteapi.com/v3/organizations/${process.env.ORGANIZATION_ID}/events/?token=${process.env.API_TOKEN}`
     );
-    let events = response.data.events.filter((e) =>
-      req.user.events.includes(e.id)
-    );
-    console.log(req.user.events);
+    let registerEvents = req.user.events.filter((event) => {
+      return response.data.events.some((e) => e.id === event.eventId);
+    });
+    /* 
+      response.data.events wali id's [this contains all the events]
+      688343623307
+      688487002157
+      688343553097
+      689572659387
+      689572539027
+      689566400667
+    */
+    console.log(registerEvents);
     // events wali list empty hai
-    res.status(200).send(events);
+    res.status(200).json(registerEvents); 
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
